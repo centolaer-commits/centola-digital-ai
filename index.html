@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centola Digital & AI — Bespoke Websites, Web Apps & Autonomous AI Agents (UK)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #060b16; color: #f1f5f9; }
+    .glass { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(148, 163, 184, 0.14); }
+    .glass-card { background: linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(10, 15, 29, 0.96)); border: 1px solid rgba(148, 163, 184, 0.14); }
+    .glass-card:hover { border-color: rgba(56, 189, 248, 0.45); transform: translateY(-2px); transition: all 0.22s ease; }
+    .grad-text { background: linear-gradient(135deg, #38bdf8 0%, #34d399 55%, #fbbf24 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-glow { background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.18), rgba(16, 185, 129, 0.08) 45%, transparent 75%); }
+  </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- BARRA DE CONTROLE DO ENRICO (VISÍVEL APENAS LOCALMENTE OU AO CLICAR NO CADEADO DO RODAPÉ) -->
+  <div id="ownerToolbar" class="hidden bg-slate-900/95 border-b border-amber-500/30 px-4 py-2.5 text-xs sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40">🛠️ PAINEL DO ENRICO (CENTOLA DIGITAL & AI)</span>
+        <span class="text-slate-300">WhatsApp UK Ativo: <strong class="text-emerald-400">07396 828090 (+44 7396 828090)</strong></span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="toggleFreelanceModal(true)" class="px-3 py-1 rounded-md bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold shadow">
+          🚀 Kit Freelancer UK (Sites + Textos Prontos)
+        </button>
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-600 text-slate-200 font-semibold hover:border-sky-400">
+          🇧🇷 Ver Tradução PT
+        </button>
+        <button onclick="hideToolbar()" title="Esconde esta barra para visualizar exatamente como o cliente vê" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700">
+          👁️ Visão do Cliente
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÃO FLUTUANTE DO WHATSAPP PARA CLIENTES UK -->
+  <a href="https://wa.me/447396828090?text=Hi%20Enrico%20(Centola%20Digital%20%26%20AI)!%20I'd%20like%20to%20request%20a%20free%2024h%20preview%20for%20my%20business." target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs sm:text-sm shadow-2xl shadow-emerald-500/30 transition transform hover:scale-105">
+    <span>💬</span>
+    <span>WhatsApp UK: 07396 828090</span>
+  </a>
+
+  <!-- NAVBAR DO SITE VITRINE -->
+  <header class="glass sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 via-emerald-400 to-amber-400 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg" id="brandInitials">
+          CD
+        </div>
+        <div>
+          <span class="text-lg sm:text-xl font-extrabold tracking-tight text-white block leading-none" data-brand-name>Centola Digital & AI</span>
+          <span class="text-[11px] text-slate-400 tracking-wide block mt-0.5" data-brand-sub>Enrico Centola • UK Digital & AI Engineering Studio</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#solutions" class="hover:text-sky-400 transition" data-i18n="nav_solutions">Solutions</a>
+        <a href="#simulator" class="hover:text-sky-400 transition" data-i18n="nav_simulator">Interactive Demo</a>
+        <a href="#portfolio" class="hover:text-sky-400 transition" data-i18n="nav_portfolio">Live Systems Built</a>
+        <a href="#pricing" class="hover:text-sky-400 transition" data-i18n="nav_pricing">UK Packages (£)</a>
+        <a href="#roi" class="hover:text-sky-400 transition" data-i18n="nav_roi">ROI Calculator</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-500 hover:from-sky-400 hover:to-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-sky-500/20 transition" data-i18n="nav_cta">
+          Request Free 24h Preview
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-glow relative pt-12 pb-20 px-4 sm:px-6 overflow-hidden">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-sky-500/30 text-sky-300 text-xs font-semibold mb-6">
+        <span>🇬🇧</span>
+        <span data-i18n="hero_badge">Based in Maidenhead, Berkshire • Serving London & Businesses Across the UK</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.12]">
+        <span data-i18n="hero_h1_1">Bespoke Websites, Web Apps &</span>
+        <span class="grad-text block mt-1" data-i18n="hero_h1_2">Autonomous AI Agents That Grow Your Business 24/7</span>
+      </h1>
+
+      <p class="mt-6 text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed" data-i18n="hero_sub">
+        Stop paying traditional agencies £3,000+ and waiting 8 weeks. We build high-converting websites, client booking portals, and private Telegram/Instagram AI Marketing Agents tailored to your brand — with a live working preview in 48 hours.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a href="#contact" class="px-7 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-emerald-500 hover:from-sky-400 hover:to-emerald-400 text-slate-950 font-extrabold text-base shadow-xl shadow-sky-500/20 transition" data-i18n="hero_btn_primary">
+          🎁 Claim Your Free Custom Homepage or AI Post Preview
+        </a>
+        <a href="#portfolio" class="px-6 py-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-white font-bold text-base border border-slate-700 transition" data-i18n="hero_btn_secondary">
+          View Our 5 Live Production Systems →
+        </a>
+      </div>
+
+      <!-- METRICS BAR -->
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-2xl sm:text-3xl font-extrabold text-sky-400">48–72h</div>
+          <div class="text-xs text-slate-400 mt-1" data-i18n="stat_1">First Live Functional Preview</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">5+ Live</div>
+          <div class="text-xs text-slate-400 mt-1" data-i18n="stat_2">Production AI & Web Platforms Built</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">85% Less</div>
+          <div class="text-xs text-slate-400 mt-1" data-i18n="stat_3">Cost vs Traditional London Agencies</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-2xl sm:text-3xl font-extrabold text-purple-400">10+ yrs</div>
+          <div class="text-xs text-slate-400 mt-1" data-i18n="stat_4">London Hospitality & Operations Leadership</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 CORE SOLUTIONS -->
+  <section id="solutions" class="py-16 px-4 sm:px-6 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-sky-400" data-i18n="sol_eyebrow">What We Build For You</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2" data-i18n="sol_title">Three Practical Systems That Generate Clients & Save Hours</h2>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base" data-i18n="sol_desc">Every system is delivered ready to use on your phone or computer — no technical knowledge required.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Solution 1 -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/15 border border-sky-400/30 flex items-center justify-center text-2xl mb-5">🌐</div>
+            <span class="px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-300 text-xs font-bold" data-i18n="sol1_tag">Fast Delivery • 48h</span>
+            <h3 class="text-xl font-extrabold text-white mt-3" data-i18n="sol1_title">1. High-Converting Websites & Booking Pages</h3>
+            <p class="text-slate-400 text-sm mt-3 leading-relaxed" data-i18n="sol1_body">
+              Ultra-fast mobile websites built to turn local Google & Instagram visitors into paying bookings via WhatsApp, Stripe, or instant quote forms.
+            </p>
+            <ul class="mt-5 space-y-2 text-xs text-slate-300">
+              <li>✅ <span data-i18n="sol1_b1">Bespoke UK design tailored to your brand & local area</span></li>
+              <li>✅ <span data-i18n="sol1_b2">1-Tap WhatsApp enquiry, online booking or Stripe checkout</span></li>
+              <li>✅ <span data-i18n="sol1_b3">Google Business SEO & lightning-fast cloud hosting</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-slate-400" data-i18n="from_label">Fixed Package from</span>
+            <span class="text-lg font-extrabold text-white">£349 <span class="text-xs font-normal text-slate-400">+ £39/mo</span></span>
+          </div>
+        </div>
+
+        <!-- Solution 2 -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between relative border-emerald-500/40 shadow-xl shadow-emerald-500/5">
+          <div class="absolute -top-3 right-6 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-extrabold text-[11px] uppercase tracking-wider">
+            Most Popular in UK
+          </div>
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center text-2xl mb-5">🤖</div>
+            <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold" data-i18n="sol2_tag">Replaces £600/mo Social Media Agency</span>
+            <h3 class="text-xl font-extrabold text-white mt-3" data-i18n="sol2_title">2. Private Telegram & Web AI Marketing Agent</h3>
+            <p class="text-slate-400 text-sm mt-3 leading-relaxed" data-i18n="sol2_body">
+              Send a 10-second voice note or topic on Telegram and your personal AI Agent designs branded multi-slide Instagram/Facebook carousels, captions & hashtags in 20 seconds.
+            </p>
+            <ul class="mt-5 space-y-2 text-xs text-slate-300">
+              <li>✅ <span data-i18n="sol2_b1">Pre-loaded with your exact logo, brand colours, photos & tone</span></li>
+              <li>✅ <span data-i18n="sol2_b2">Powered by Google Gemini Cloud AI + private web studio</span></li>
+              <li>✅ <span data-i18n="sol2_b3">Optional 3D/Cinematic AI Video Reels for TikTok & Shorts</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-slate-400" data-i18n="from_label">Fixed Package from</span>
+            <span class="text-lg font-extrabold text-emerald-400">£495 <span class="text-xs font-normal text-slate-400">+ £95/mo</span></span>
+          </div>
+        </div>
+
+        <!-- Solution 3 -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-400/30 flex items-center justify-center text-2xl mb-5">📱</div>
+            <span class="px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 text-xs font-bold" data-i18n="sol3_tag">Full Custom Software</span>
+            <h3 class="text-xl font-extrabold text-white mt-3" data-i18n="sol3_title">3. Bespoke Web Apps, Staff & Client Portals</h3>
+            <p class="text-slate-400 text-sm mt-3 leading-relaxed" data-i18n="sol3_body">
+              Installable mobile web apps (PWA) for managing bookings, staff hours in £, Google Maps routes, digital PDF contracts, and Stripe Connect marketplace payouts.
+            </p>
+            <ul class="mt-5 space-y-2 text-xs text-slate-300">
+              <li>✅ <span data-i18n="sol3_b1">Installs directly on iPhone & Android without App Store delays</span></li>
+              <li>✅ <span data-i18n="sol3_b2">Automated hour calculation, invoicing & GPS route planning</span></li>
+              <li>✅ <span data-i18n="sol3_b3">Full Python FastAPI + React + PostgreSQL cloud architecture</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-slate-400" data-i18n="from_label">Fixed Package from</span>
+            <span class="text-lg font-extrabold text-white">£950 <span class="text-xs font-normal text-slate-400">+ £120/mo</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE INDUSTRY SIMULATOR -->
+  <section id="simulator" class="py-16 px-4 sm:px-6 bg-slate-900/40 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Interactive Sector Demo</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">See Exactly How It Works For Your Industry</h2>
+        <p class="text-slate-400 mt-2 text-sm">Click any UK business sector below to preview the exact website + AI agent workflow we deploy for you:</p>
+      </div>
+
+      <!-- Sector Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <button onclick="selectSector('hospitality')" id="sec-hospitality" class="sector-tab px-4 py-2.5 rounded-xl bg-sky-500 text-slate-950 font-bold text-sm transition">
+          🍽️ Restaurants, Cafés & Hospitality
+        </button>
+        <button onclick="selectSector('cleaning')" id="sec-cleaning" class="sector-tab px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold text-sm transition">
+          ✨ Cleaning & Domestic Services
+        </button>
+        <button onclick="selectSector('clinics')" id="sec-clinics" class="sector-tab px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold text-sm transition">
+          💆‍♀️ Aesthetics, Therapy & Clinics
+        </button>
+        <button onclick="selectSector('trades')" id="sec-trades" class="sector-tab px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold text-sm transition">
+          🔧 Trades, Builders & Local SMEs
+        </button>
+      </div>
+
+      <!-- Dynamic Simulator Card -->
+      <div id="sectorCard" class="glass-card rounded-3xl p-6 sm:p-10 max-w-5xl mx-auto">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL PRODUCTION PORTFOLIO (PROOF OF WORK) -->
+  <section id="portfolio" class="py-16 px-4 sm:px-6 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">100% Real Production Systems</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Systems We Have Built & Run In Production</h2>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">
+          Unlike typical freelancers showing fake templates, every project below is a working software platform, AI agent, or e-commerce system engineered and operated by us.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Case 1: Sparkle UK -->
+        <div class="glass-card rounded-3xl overflow-hidden flex flex-col">
+          <div class="grid grid-cols-2 gap-2 p-3 bg-slate-950/70 border-b border-slate-800 h-64">
+            <img src="assets/sparkle_slide1.jpg" alt="Sparkle UK Platform" class="w-full h-full object-cover rounded-xl" />
+            <img src="assets/sparkle_recruit1.jpg" alt="Sparkle UK Recruitment AI" class="w-full h-full object-cover rounded-xl" />
+          </div>
+          <div class="p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 text-xs font-bold">UK Marketplace</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">Stripe Connect Escrow</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-purple-500/15 text-purple-300 text-xs font-bold">24/7 Growth AI Agent</span>
+              </div>
+              <h3 class="text-2xl font-extrabold text-white">Sparkle UK — Home Cleaning Marketplace & Autonomous Growth AI</h3>
+              <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                Full-stack UK marketplace matching homeowners and vetted cleaners within a 5-mile radius (Haversine GPS), featuring Right-to-Work verification, digital PDF contractor agreements, 4-digit security PIN payment release on Stripe Connect, plus a 24/7 AI Marketing Agent generating local social media campaigns across London & Berkshire.
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+              <span>Stack: Python FastAPI • React • AWS RDS PostgreSQL • Stripe Connect</span>
+              <span class="text-emerald-400 font-bold">● Live Architecture</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 2: Renata Autonomous Carousel & Telegram Agent -->
+        <div class="glass-card rounded-3xl overflow-hidden flex flex-col">
+          <div class="grid grid-cols-2 gap-2 p-3 bg-slate-950/70 border-b border-slate-800 h-64">
+            <img src="assets/renata_carousel_1.jpg" alt="AI Generated Carousel Slide 1" class="w-full h-full object-cover rounded-xl" />
+            <img src="assets/renata_carousel_2.jpg" alt="AI Generated Carousel Slide 2" class="w-full h-full object-cover rounded-xl" />
+          </div>
+          <div class="p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">Telegram Bot + Web Studio</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 text-xs font-bold">Google Gemini Flash AI</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-pink-500/15 text-pink-300 text-xs font-bold">Auto Carousel Designer</span>
+              </div>
+              <h3 class="text-2xl font-extrabold text-white">Autonomous Social Media & Carousel AI Agent (Telegram + Web)</h3>
+              <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                Built for busy professionals and clinics: the business owner simply sends a topic or voice message on Telegram, and the AI agent writes emotionally engaging copy, designs multi-slide editorial carousels with the client's photo & brand typography, and prepares ready-to-publish Instagram & Facebook posts.
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+              <span>Stack: Python • Gemini Cloud API • Telegram Bot API • Pillow Design Engine</span>
+              <span class="text-emerald-400 font-bold">● Ready to Clone in 24h</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 3: Luca the Explorer 3D Pixar Video & TikTok Shop Studio -->
+        <div class="glass-card rounded-3xl overflow-hidden flex flex-col">
+          <div class="grid grid-cols-2 gap-2 p-3 bg-slate-950/70 border-b border-slate-800 h-64">
+            <img src="assets/luca_everest_cover.jpg" alt="Luca 3D Pixar AI Video Mount Everest" class="w-full h-full object-cover rounded-xl" />
+            <img src="assets/luca_amazon_cover.jpg" alt="Luca 3D Pixar AI Video Amazon" class="w-full h-full object-cover rounded-xl" />
+          </div>
+          <div class="p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-purple-500/15 text-purple-300 text-xs font-bold">3D AI Video Pipeline</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 text-xs font-bold">TikTok Shop UK Integration</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-red-500/15 text-red-300 text-xs font-bold">YouTube Shorts Auto-Post</span>
+              </div>
+              <h3 class="text-2xl font-extrabold text-white">Luca the Explorer — 3D Animated Video & TikTok Shop UK Engine</h3>
+              <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                End-to-end content & e-commerce automation for a UK children's book brand: writes fresh scripts with Gemini, renders continuous 3-act 3D Pixar-style animations via Google Flow (Veo 3.1), generates custom grid-safe covers, attaches the exact TikTok Shop UK product basket, and cross-posts to YouTube Shorts.
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+              <span>Stack: Veo 3.1 / Google Flow • FFmpeg • Playwright CDP • TikTok Shop UK</span>
+              <span class="text-emerald-400 font-bold">● Live on TikTok & YouTube</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 4: E-Commerce, Mobile Scheduling PWA & Multi-Agent Financial Swarm -->
+        <div class="glass-card rounded-3xl overflow-hidden flex flex-col">
+          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-950 to-sky-950/40 border-b border-slate-800 h-64 flex flex-col justify-center">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-700/80">
+                <div class="text-xl mb-1">🛍️</div>
+                <div class="text-xs font-bold text-white">Skincare E-Commerce</div>
+                <div class="text-[11px] text-slate-400 mt-1">Vercel + Instant Checkout + AI Routine Advisor</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-700/80">
+                <div class="text-xl mb-1">📅</div>
+                <div class="text-xs font-bold text-white">Mobile Rota & £ App</div>
+                <div class="text-[11px] text-slate-400 mt-1">iPhone PWA + £/hr Calc + Google Maps Routes</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-700/80">
+                <div class="text-xl mb-1">📊</div>
+                <div class="text-xs font-bold text-white">5-Agent AI Swarm</div>
+                <div class="text-[11px] text-slate-400 mt-1">AWS EC2 + Gemini Vision Audit + Mobile Tunnel</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-7 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 text-xs font-bold">Mobile PWA Apps</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 text-xs font-bold">E-Commerce & Landing Pages</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">AWS Cloud & Dashboards</span>
+              </div>
+              <h3 class="text-2xl font-extrabold text-white">Bespoke Mobile Operations Apps, E-Commerce & Cloud Dashboards</h3>
+              <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                From high-converting skincare e-commerce stores (`caradericaapp.com.br`) to mobile schedule & earnings calculators for UK field professionals and multi-agent monitoring dashboards on AWS EC2 controllable from any smartphone.
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+              <span>Stack: React • Vercel • AWS API Gateway • Cloudflare Secure Tunnels</span>
+              <span class="text-emerald-400 font-bold">● Production Proven</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI CALCULATOR FOR UK BUSINESSES -->
+  <section id="roi" class="py-16 px-4 sm:px-6 bg-slate-900/40 border-t border-slate-800/80">
+    <div class="max-w-5xl mx-auto glass-card rounded-3xl p-7 sm:p-10">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">UK Small Business Savings Calculator</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">How Much Does an AI Agent Save You Every Month?</h2>
+          <p class="text-slate-400 text-sm mt-2">
+            Adjust the sliders to compare hiring a traditional UK marketing agency/freelancer vs running your own dedicated AI Agent & website.
+          </p>
+
+          <div class="mt-6 space-y-5">
+            <div>
+              <div class="flex justify-between text-xs font-semibold mb-1.5">
+                <span class="text-slate-300">Social Media Posts / Carousels per Week:</span>
+                <span id="postsPerWeekVal" class="text-sky-400 font-bold">5 posts/week</span>
+              </div>
+              <input id="postsPerWeek" type="range" min="2" max="14" value="5" oninput="updateROI()" class="w-full accent-sky-400" />
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-semibold mb-1.5">
+                <span class="text-slate-300">Your Time Value (or UK Staff Cost per Hour):</span>
+                <span id="hourlyVal" class="text-sky-400 font-bold">£25/hour</span>
+              </div>
+              <input id="hourlyRate" type="range" min="15" max="75" step="5" value="25" oninput="updateROI()" class="w-full accent-sky-400" />
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-slate-950/90 border border-slate-800 p-6">
+          <div class="text-xs text-slate-400 uppercase font-bold tracking-wider">Estimated Monthly Impact</div>
+          <div class="mt-4 grid grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+              <div class="text-xs text-slate-400">Hours Saved / Month</div>
+              <div id="roiHours" class="text-2xl font-extrabold text-white mt-1">30 hrs</div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+              <div class="text-xs text-slate-400">Typical UK Agency Cost</div>
+              <div id="roiAgency" class="text-2xl font-extrabold text-rose-400 line-through mt-1">£750/mo</div>
+            </div>
+          </div>
+          <div class="mt-4 p-5 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-sky-500/20 border border-emerald-400/40">
+            <div class="text-xs text-emerald-300 font-bold uppercase">Your Net Annual Savings with Our AI Agent (£95/mo)</div>
+            <div id="roiAnnualSavings" class="text-3xl sm:text-4xl font-black text-white mt-1">£7,860 / year</div>
+            <div class="text-xs text-slate-300 mt-1">Plus consistent daily posting & instant lead capture on WhatsApp.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENT UK PRICING -->
+  <section id="pricing" class="py-16 px-4 sm:px-6 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Simple Fixed-Price UK Packages</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Pay Only After You See Your Live Preview</h2>
+        <p class="text-slate-400 mt-2 text-sm">50% on preview approval • 50% on final hand-off • Cancel monthly hosting/support anytime.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Plan 1 -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-extrabold text-white">Smart Business Website</h3>
+            <p class="text-xs text-slate-400 mt-1">Ideal for trades, cleaners, restaurants & local services</p>
+            <div class="mt-5">
+              <span class="text-4xl font-black text-white">£349</span>
+              <span class="text-xs text-slate-400"> one-off setup</span>
+              <div class="text-xs text-sky-400 font-semibold mt-1">+ £39/month (Hosting, SSL & Updates)</div>
+            </div>
+            <ul class="mt-6 space-y-2.5 text-xs text-slate-300">
+              <li>✔️ Custom responsive UK website (up to 5 sections)</li>
+              <li>✔️ Direct WhatsApp button & instant quote form</li>
+              <li>✔️ Google Maps, reviews & portfolio gallery</li>
+              <li>✔️ Ready in 48–72 hours</li>
+            </ul>
+          </div>
+          <a href="#contact" onclick="prefillPackage('Smart Business Website (£349 + £39/mo)')" class="mt-8 block text-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm transition">
+            Request Free Website Preview
+          </a>
+        </div>
+
+        <!-- Plan 2 -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border-emerald-500/50 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-extrabold text-[11px]">
+            BEST VALUE — WEBSITE + AI AGENT
+          </div>
+          <div>
+            <h3 class="text-lg font-extrabold text-white">AI Marketing Agent + Website Bundle</h3>
+            <p class="text-xs text-slate-400 mt-1">Your own Telegram Carousel Bot + High-Converting Website</p>
+            <div class="mt-5">
+              <span class="text-4xl font-black text-emerald-400">£595</span>
+              <span class="text-xs text-slate-400"> one-off setup (or £495 Agent only)</span>
+              <div class="text-xs text-emerald-300 font-semibold mt-1">+ £95/month (Cloud AI API, Hosting & Support)</div>
+            </div>
+            <ul class="mt-6 space-y-2.5 text-xs text-slate-300">
+              <li>✔️ Private Telegram Bot + Web Dashboard trained on your brand</li>
+              <li>✔️ Unlimited AI carousels, captions & post ideas in seconds</li>
+              <li>✔️ Full Smart Business Website included</li>
+              <li>✔️ 1-on-1 training call & 24/7 cloud uptime</li>
+            </ul>
+          </div>
+          <a href="#contact" onclick="prefillPackage('AI Marketing Agent + Website Bundle (£595 + £95/mo)')" class="mt-8 block text-center py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-sky-500 hover:from-emerald-400 hover:to-sky-400 text-slate-950 font-extrabold text-sm transition">
+            Claim Your Free Demo Post & Website
+          </a>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-extrabold text-white">Bespoke Web App / Portal</h3>
+            <p class="text-xs text-slate-400 mt-1">Custom booking system, staff rota app, or 3D video engine</p>
+            <div class="mt-5">
+              <span class="text-4xl font-black text-white">£950</span>
+              <span class="text-xs text-slate-400"> starting setup</span>
+              <div class="text-xs text-amber-400 font-semibold mt-1">+ £120/month (Database, Cloud & Maintenance)</div>
+            </div>
+            <ul class="mt-6 space-y-2.5 text-xs text-slate-300">
+              <li>✔️ Installable iPhone/Android PWA or Customer Portal</li>
+              <li>✔️ Staff hours, GPS routes, PDF contracts or Stripe Connect</li>
+              <li>✔️ Or 3D Pixar / Flow Video Automation for TikTok & Reels</li>
+              <li>✔️ Tailored to your exact business workflow</li>
+            </ul>
+          </div>
+          <a href="#contact" onclick="prefillPackage('Bespoke Web App / Custom AI System (£950+)')" class="mt-8 block text-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm transition">
+            Discuss Your Custom App
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & INSTANT WHATSAPP BRIEF GENERATOR -->
+  <section id="contact" class="py-16 px-4 sm:px-6 bg-slate-900/50 border-t border-slate-800/80">
+    <div class="max-w-4xl mx-auto glass-card rounded-3xl p-7 sm:p-10">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Zero-Risk 24h Preview</span>
+        <h2 class="text-3xl font-extrabold text-white mt-2">See Your Business on a Live Preview Before You Pay a Penny</h2>
+        <p class="text-slate-400 text-sm mt-2">
+          Fill in 3 quick details below. We will build a free live preview of your new website or generate 1 branded AI carousel for your business within 24 hours.
+        </p>
+      </div>
+
+      <form onsubmit="sendWhatsAppEnquiry(event)" class="mt-8 grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-semibold text-slate-300 block mb-1">Your Name & Business Name *</label>
+          <input id="clientName" type="text" required placeholder="e.g. Sarah — Windsor Aesthetics Clinic" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400" />
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-300 block mb-1">Your Website or Instagram Handle</label>
+          <input id="clientInsta" type="text" placeholder="e.g. @windsorclinic or www.example.co.uk" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400" />
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-300 block mb-1">Package You Want to Preview *</label>
+          <select id="clientPackage" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
+            <option value="AI Marketing Agent + Website Bundle (£595 + £95/mo)">AI Marketing Agent + Website Bundle (£595 + £95/mo)</option>
+            <option value="Smart Business Website (£349 + £39/mo)">Smart Business Website (£349 + £39/mo)</option>
+            <option value="Private Telegram AI Carousel Agent (£495 + £95/mo)">Private Telegram AI Carousel Agent (£495 + £95/mo)</option>
+            <option value="Bespoke Web App / Staff & Booking Portal (£950+)">Bespoke Web App / Staff & Booking Portal (£950+)</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-300 block mb-1">Main Goal / Notes</label>
+          <input id="clientNotes" type="text" placeholder="e.g. More local bookings & automated Instagram posts" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400" />
+        </div>
+        <div class="sm:col-span-2 mt-2">
+          <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-sky-500 hover:from-emerald-400 hover:to-sky-400 text-slate-950 font-extrabold text-base shadow-xl transition">
+            💬 Send Request via WhatsApp & Claim Free 24h Preview
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-6 pt-5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
+        <div>📍 <strong>Enrico Centola (Centola Digital & AI)</strong> — Maidenhead, Berkshire, UK</div>
+        <div class="flex flex-wrap items-center gap-4">
+          <span>📱 WhatsApp / UK Mobile: <a href="https://wa.me/447396828090" target="_blank" class="text-emerald-400 font-bold hover:underline">07396 828090 (+44 7396 828090)</a></span>
+          <span>📧 Email: <a href="mailto:enricocentolauk@gmail.com" class="text-sky-400 hover:underline">enricocentolauk@gmail.com</a></span>
+          <button onclick="showToolbar(); toggleFreelanceModal(true);" title="Founder Toolkit" class="text-slate-600 hover:text-slate-400">⚙️</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL: KIT FREELANCER UK (PLATAFORMAS + TEXTOS PRONTOS PARA COPIAR) -->
+  <div id="freelanceModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md overflow-y-auto p-4 sm:p-8">
+    <div class="max-w-5xl mx-auto glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/40">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div>
+          <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-xs font-bold">🇬🇧 GUIA PRÁTICO PARA O ENRICO</span>
+          <h3 class="text-2xl font-extrabold text-white mt-1">Onde Cadastrar no Reino Unido + Textos Prontos em Inglês (£)</h3>
+        </div>
+        <button onclick="toggleFreelanceModal(false)" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-sm">✕ Fechar</button>
+      </div>
+
+      <!-- 1. Plataformas Freelancer UK -->
+      <div class="mt-6">
+        <h4 class="text-sm font-bold uppercase tracking-wider text-sky-400 mb-3">1. Os 5 Melhores Sites para Conseguir Clientes em Libras (£ GBP)</h4>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+          <div class="p-4 rounded-2xl bg-slate-900 border border-emerald-500/40">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-white text-sm">1. PeoplePerHour (UK #1) ⭐</span>
+              <a href="https://www.peopleperhour.com/freelance" target="_blank" class="text-emerald-400 font-bold hover:underline">Abrir Site ↗</a>
+            </div>
+            <p class="text-slate-300 mt-1.5">Plataforma britânica (paga direto em <strong>£ GBP</strong>). Pequenas empresas do UK compram "Offers" de preço fixo (sites, bots, automação IA). Cadastre os 3 pacotes abaixo lá!</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-white text-sm">2. Fiverr (Categoria AI Services)</span>
+              <a href="https://www.fiverr.com/start_selling" target="_blank" class="text-sky-400 font-bold hover:underline">Abrir Site ↗</a>
+            </div>
+            <p class="text-slate-300 mt-1.5">Milhares de buscas diárias por <em>"AI Telegram Agent"</em>, <em>"AI Social Media Automation"</em> e <em>"FastAPI React Web App"</em>. Você cria 3 Gigs usando as imagens reais do Sparkle, Renata e Luca.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-white text-sm">3. Upwork (Projetos £500–£2.500)</span>
+              <a href="https://www.upwork.com/nx/signup/?dest=home" target="_blank" class="text-sky-400 font-bold hover:underline">Abrir Site ↗</a>
+            </div>
+            <p class="text-slate-300 mt-1.5">Excelente para vagas de empresas do UK procurando <em>"Custom AI Agent for Marketing"</em> ou <em>"Bespoke Booking Web App"</em>. Você anexa o link deste seu site-vitrine na proposta!</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-white text-sm">4. Bark.com UK (Clientes Locais)</span>
+              <a href="https://www.bark.com/en/gb/sellers/create/" target="_blank" class="text-sky-400 font-bold hover:underline">Abrir Site ↗</a>
+            </div>
+            <p class="text-slate-300 mt-1.5">Muito forte em Maidenhead, Berkshire e Londres para donos de negócios locais pedindo Web Design e Software. <em>(Dica: só compre créditos quando o lead tiver telefone verificado).</em></p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 sm:col-span-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-white text-sm">5. Abordagem Direta "Prévia Pronta" (Zero Taxa — Maior Conversão!)</span>
+              <span class="text-amber-400 font-bold">Maidenhead & Londres</span>
+            </div>
+            <p class="text-slate-300 mt-1.5">Você escolhe um restaurante, clínica de estética ou empresa de limpeza no Google Maps/Instagram, eu gero uma prévia personalizada com o nome deles em 10 minutos, e você manda a mensagem pronta abaixo no WhatsApp/Instagram deles.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Textos Prontos para Copiar e Colar -->
+      <div class="mt-6 space-y-4">
+        <h4 class="text-sm font-bold uppercase tracking-wider text-emerald-400">2. Textos em Inglês Britânico Prontos para Copiar (1 Clique)</h4>
+
+        <!-- Bio do Perfil -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-white">A) Bio do Seu Perfil (Para PeoplePerHour, Upwork, Fiverr & LinkedIn)</span>
+            <button onclick="copyText('bioText', this)" class="px-3 py-1 rounded-lg bg-sky-500/20 border border-sky-400 text-sky-300 text-xs font-bold hover:bg-sky-500/30">📋 Copiar Bio</button>
+          </div>
+          <textarea id="bioText" readonly rows="3" class="w-full bg-slate-950 text-slate-300 text-xs p-3 rounded-xl border border-slate-800">UK-based AI & Full-Stack Web Developer (Maidenhead / London — Centola Digital & AI) combining 10+ years of London hospitality & operations management with cutting-edge software engineering. I build high-converting websites, installable booking web apps (Python FastAPI, React, Stripe Connect), and private Telegram/Instagram AI Marketing Agents (Google Gemini & Veo 3D Video) that save UK small businesses 30+ hours every month. Live Portfolio: https://centolaer-commits.github.io/centola-digital-ai/</textarea>
+        </div>
+
+        <!-- Gig 1: AI Marketing Agent -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-white">B) Anúncio/Oferta #1 (PeoplePerHour / Fiverr): Agente IA de Marketing no Telegram ("Clone da Renata")</span>
+            <button onclick="copyText('gig1Text', this)" class="px-3 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400 text-emerald-300 text-xs font-bold hover:bg-emerald-500/30">📋 Copiar Oferta #1</button>
+          </div>
+          <textarea id="gig1Text" readonly rows="4" class="w-full bg-slate-950 text-slate-300 text-xs p-3 rounded-xl border border-slate-800">TITLE: I will build a custom AI Social Media & Carousel Agent on Telegram for your business (£495)
+DESCRIPTION: Stop spending hours on Canva or paying £600+/month to a social media agency. I will deploy your own private Telegram Bot & Web Marketing Studio powered by Google Gemini AI, pre-trained on your exact brand colours, logo, photos, and tone of voice. Simply send a 10-second voice note or topic on Telegram, and your AI Agent generates ready-to-post multi-slide Instagram/Facebook carousels and captions in 20 seconds. See live portfolio & demos at: https://centolaer-commits.github.io/centola-digital-ai/</textarea>
+        </div>
+
+        <!-- Gig 2: Smart UK Website -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-white">C) Anúncio/Oferta #2: Website de Alta Conversão + Agendamento WhatsApp (£349)</span>
+            <button onclick="copyText('gig2Text', this)" class="px-3 py-1 rounded-lg bg-sky-500/20 border border-sky-400 text-sky-300 text-xs font-bold hover:bg-sky-500/30">📋 Copiar Oferta #2</button>
+          </div>
+          <textarea id="gig2Text" readonly rows="3" class="w-full bg-slate-950 text-slate-300 text-xs p-3 rounded-xl border border-slate-800">TITLE: I will build a high-converting UK Business Website with WhatsApp & Booking in 48 hours (£349)
+DESCRIPTION: Get a bespoke, mobile-first website designed to convert local UK visitors into bookings. Includes custom branding, service & pricing showcase, 1-click WhatsApp enquiry flow, online booking or Stripe payment link, and local Google SEO setup. Live agency portfolio: https://centolaer-commits.github.io/centola-digital-ai/</textarea>
+        </div>
+
+        <!-- Mensagem WhatsApp / Instagram Abordagem Direta -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-amber-500/40">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-amber-300">D) Mensagem Matadora para Mandar no WhatsApp / Instagram de Negócios Locais no UK</span>
+            <button onclick="copyText('outreachText', this)" class="px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400 text-amber-300 text-xs font-bold hover:bg-amber-500/30">📋 Copiar Mensagem</button>
+          </div>
+          <textarea id="outreachText" readonly rows="3" class="w-full bg-slate-950 text-slate-300 text-xs p-3 rounded-xl border border-slate-800">Hi [Name]! I'm Enrico from Centola Digital & AI here in Maidenhead (https://centolaer-commits.github.io/centola-digital-ai/). I came across [Business Name] and put together a free working preview of a modernised booking website [or: an automated AI Instagram carousel] tailored specifically to your brand. Mind if I send over the preview link here so you can have a look on your phone — no strings attached?</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SECTORS = {
+      hospitality: {
+        badge: "London F&B Manager Experience + AI Engineering",
+        title: "For Restaurants, Cafés & Hospitality Venues",
+        problem: "High commission fees on third-party platforms, outdated PDF menus on mobile, and no time to post daily food reels or specials on Instagram.",
+        solution: "We build an instant mobile menu & direct table/event enquiry website, plus a private Telegram AI Agent where the manager snaps a photo of today's dish and gets a branded carousel + caption ready in 15 seconds.",
+        deliverables: [
+          "Mobile-first Interactive Menu, Private Dining & Direct Booking Website",
+          "Telegram AI Marketing Bot for daily specials, wine pairings & weekend promos",
+          "Automated Google Review request link for guests"
+        ],
+        pkg: "Recommended: AI Marketing Agent + Website Bundle (£595 setup + £95/mo)"
+      },
+      cleaning: {
+        badge: "Proven with Sparkle UK Marketplace",
+        title: "For Cleaning Companies & Domestic Service Businesses",
+        problem: "Managing cleaners, client addresses, hours in £, and quotes across messy WhatsApp chats while losing leads to competitors with better websites.",
+        solution: "We deploy a high-converting Instant Quote & Booking website plus an installable mobile Web App (PWA) that calculates cleaner hours, maps GPS routes, and generates digital client agreements.",
+        deliverables: [
+          "Instant Postcode Quote & WhatsApp Booking Website",
+          "Mobile Schedule, Hours (£) & Google Maps Route Web App",
+          "Automated Facebook & Nextdoor Neighbourhood Recruiting/Client Carousels"
+        ],
+        pkg: "Recommended: Smart Website (£349) or Full Operations Web App (£950)"
+      },
+      clinics: {
+        badge: "Proven with Renata AI Marketing Studio",
+        title: "For Aesthetic Clinics, Therapists, Dentists & Salons",
+        problem: "Clients judge your clinical quality by your Instagram feed and website, but creating educational carousels every day takes 10+ hours a week.",
+        solution: "Your own 'Renata-style' Telegram AI Agent pre-loaded with your clinical aesthetic, portrait photos, colour palette, and professional tone — turning any treatment topic into a 5-slide educational carousel in 20 seconds.",
+        deliverables: [
+          "Private Telegram Bot + Web Studio generating branded 5-slide carousels",
+          "Luxury Treatment Showcase & Consultation Booking Website",
+          "1-Click WhatsApp pre-consultation intake form"
+        ],
+        pkg: "Recommended: Private AI Carousel Agent + Website (£595 setup + £95/mo)"
+      },
+      trades: {
+        badge: "Built for UK Sole Traders & Local SMEs",
+        title: "For Builders, Electricians, Landscaping & Property Services",
+        problem: "Relying purely on word-of-mouth or paying expensive lead fees on directory sites without owning your own professional digital storefront.",
+        solution: "A clean, trustworthy British website showing your before/after project gallery, accreditations, service areas, and a 30-second WhatsApp photo-quote button that sends leads straight to your phone.",
+        deliverables: [
+          "Fast UK Service Website with Before/After Gallery & Postcode Coverage",
+          "Instant 'Send a Photo for a Quote on WhatsApp' lead capture",
+          "Google Business Profile optimisation for local searches"
+        ],
+        pkg: "Recommended: Smart Business Website (£349 setup + £39/mo)"
+      }
+    };
+
+    function selectSector(key) {
+      const s = SECTORS[key];
+      document.querySelectorAll('.sector-tab').forEach(btn => {
+        btn.className = "sector-tab px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold text-sm transition";
+      });
+      const activeBtn = document.getElementById('sec-' + key);
+      if (activeBtn) {
+        activeBtn.className = "sector-tab px-4 py-2.5 rounded-xl bg-sky-500 text-slate-950 font-bold text-sm shadow-lg shadow-sky-500/20 transition";
+      }
+      document.getElementById('sectorCard').innerHTML = `
+        <div class="grid md:grid-cols-5 gap-8 items-center">
+          <div class="md:col-span-3">
+            <span class="px-3 py-1 rounded-full bg-sky-500/15 text-sky-300 text-xs font-bold">${s.badge}</span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-3">${s.title}</h3>
+            <div class="mt-4 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-xs text-slate-300">
+              <strong class="text-rose-300 block mb-1">❌ Common Bottleneck:</strong> ${s.problem}
+            </div>
+            <div class="mt-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-slate-200">
+              <strong class="text-emerald-300 block mb-1">✅ What We Deploy For You:</strong> ${s.solution}
+            </div>
+          </div>
+          <div class="md:col-span-2 p-6 rounded-2xl bg-slate-950/90 border border-slate-800">
+            <div class="text-xs font-bold uppercase text-amber-400 tracking-wider mb-3">Included Deliverables</div>
+            <ul class="space-y-2.5 text-xs text-slate-300">
+              ${s.deliverables.map(d => `<li class="flex items-start gap-2"><span class="text-emerald-400">✔</span><span>${d}</span></li>`).join('')}
+            </ul>
+            <div class="mt-5 pt-4 border-t border-slate-800 text-xs font-bold text-sky-300">${s.pkg}</div>
+            <a href="#contact" class="mt-4 block text-center py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs transition">
+              Request Free Preview for This Sector →
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function setBrand(name, sub) {
+      document.querySelectorAll('[data-brand-name]').forEach(el => el.textContent = name);
+      if (sub) document.querySelectorAll('[data-brand-sub]').forEach(el => el.textContent = sub);
+      const words = name.trim().split(/\s+/);
+      const initials = (words[0]?.[0] || 'C') + (words[1]?.[0] || 'D');
+      document.getElementById('brandInitials').textContent = initials.toUpperCase();
+      document.title = name + " — Bespoke Websites, Web Apps & Autonomous AI Agents (UK)";
+      localStorage.setItem('enrico_studio_brand', name);
+      localStorage.setItem('enrico_studio_sub', sub || '');
+    }
+
+    function updateROI() {
+      const posts = parseInt(document.getElementById('postsPerWeek').value, 10);
+      const rate = parseInt(document.getElementById('hourlyRate').value, 10);
+      document.getElementById('postsPerWeekVal').textContent = posts + " posts/week";
+      document.getElementById('hourlyVal').textContent = "£" + rate + "/hour";
+      const hoursSaved = Math.round(posts * 1.5 * 4.3);
+      const agencyEquivalent = Math.max(450, Math.round(hoursSaved * rate));
+      const netAnnual = (agencyEquivalent - 95) * 12;
+      document.getElementById('roiHours').textContent = hoursSaved + " hrs";
+      document.getElementById('roiAgency').textContent = "£" + agencyEquivalent.toLocaleString('en-GB') + "/mo";
+      document.getElementById('roiAnnualSavings').textContent = "£" + netAnnual.toLocaleString('en-GB') + " / year";
+    }
+
+    function prefillPackage(pkgName) {
+      const sel = document.getElementById('clientPackage');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value.includes(pkgName.split(' (')[0])) {
+          sel.selectedIndex = i;
+          break;
+        }
+      }
+    }
+
+    function sendWhatsAppEnquiry(e) {
+      e.preventDefault();
+      const brand = "Centola Digital & AI";
+      const name = document.getElementById('clientName').value.trim();
+      const insta = document.getElementById('clientInsta').value.trim() || 'Not provided';
+      const pkg = document.getElementById('clientPackage').value;
+      const notes = document.getElementById('clientNotes').value.trim() || 'Interested in a free 24h preview';
+      const msg = `Hi Enrico (${brand})!%0A%0A*Name/Business:* ${encodeURIComponent(name)}%0A*Website/IG:* ${encodeURIComponent(insta)}%0A*Package:* ${encodeURIComponent(pkg)}%0A*Goal:* ${encodeURIComponent(notes)}%0A%0AI'd love to see a free 24h preview for my business!`;
+      window.open(`https://wa.me/447396828090?text=${msg}`, '_blank');
+    }
+
+    function toggleFreelanceModal(show) {
+      document.getElementById('freelanceModal').classList.toggle('hidden', !show);
+    }
+
+    function hideToolbar() {
+      document.getElementById('ownerToolbar').classList.add('hidden');
+    }
+
+    function showToolbar() {
+      document.getElementById('ownerToolbar').classList.remove('hidden');
+    }
+
+    function copyText(id, btn) {
+      const el = document.getElementById(id);
+      navigator.clipboard.writeText(el.value);
+      const old = btn.textContent;
+      btn.textContent = "✅ Copiado!";
+      setTimeout(() => btn.textContent = old, 1800);
+    }
+
+    let currentLang = 'en';
+    const PT_TEXTS = {
+      nav_solutions: "Soluções",
+      nav_simulator: "Simulador por Nicho",
+      nav_portfolio: "Sistemas Reais Criados",
+      nav_pricing: "Pacotes UK (£)",
+      nav_roi: "Calculadora de Economia",
+      nav_cta: "Pedir Prévia Grátis em 24h",
+      hero_badge: "Sediado em Maidenhead, Berkshire • Atendendo Londres e Todo o Reino Unido",
+      hero_h1_1: "Sites Sob Medida, Web Apps e",
+      hero_h1_2: "Agentes Autônomos de IA que Vendem por Você 24/7",
+      hero_sub: "Pare de pagar £3.000+ para agências tradicionais e esperar 8 semanas. Criamos sites de alta conversão, aplicativos de agendamento e Agentes de Marketing no Telegram treinados na sua marca — com prévia funcionando em 48 horas.",
+      hero_btn_primary: "🎁 Peça Sua Prévia Gratuita de Site ou Post IA",
+      hero_btn_secondary: "Ver Nossos 5 Sistemas Reais em Produção →"
+    };
+    const EN_TEXTS = {};
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'pt' : 'en';
+      const btn = document.getElementById('langToggleBtn');
+      btn.textContent = currentLang === 'en' ? '🇧🇷 Ver Tradução PT' : '🇬🇧 Voltar para Inglês UK';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (!EN_TEXTS[key]) EN_TEXTS[key] = el.textContent;
+        if (currentLang === 'pt' && PT_TEXTS[key]) {
+          el.textContent = PT_TEXTS[key];
+        } else if (currentLang === 'en' && EN_TEXTS[key]) {
+          el.textContent = EN_TEXTS[key];
+        }
+      });
+    }
+
+    // Init
+    selectSector('hospitality');
+    updateROI();
+    setBrand('Centola Digital & AI', 'Enrico Centola • UK Digital & AI Engineering Studio');
+    if (window.location.protocol === 'file:' || window.location.search.includes('admin=1')) {
+      showToolbar();
+    }
+  </script>
+</body>
+</html>
